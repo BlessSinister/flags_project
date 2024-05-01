@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -15,19 +16,19 @@ const Wrapper = styled.section`
   @media (min-width: 1024px) {
     grid-template-columns: minmax(400px, 600px) 1fr;
   }
-`;
+`
 
 const InfoImage = styled.img`
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-`;
+`
 
 const InfoTitle = styled.h1`
   margin: 0;
   font-weight: var(--fw-normal);
-`;
+`
 
 const ListGroup = styled.div`
   display: flex;
@@ -39,13 +40,13 @@ const ListGroup = styled.div`
     flex-direction: row;
     gap: 4rem;
   }
-`;
+`
 
 const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-`;
+`
 
 const ListItem = styled.li`
   line-height: 1.8;
@@ -53,7 +54,7 @@ const ListItem = styled.li`
   & > b {
     font-weight: var(--fw-bold);
   }
-`;
+`
 
 const Meta = styled.div`
   margin-top: 3rem;
@@ -70,13 +71,13 @@ const Meta = styled.div`
     flex-direction: row;
     align-items: center;
   }
-`;
+`
 
 const TagGroup = styled.div`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-`;
+`
 
 const Tag = styled.span`
   padding: 0 1rem;
@@ -84,9 +85,10 @@ const Tag = styled.span`
   box-shadow: var(--shadow);
   line-height: 1.5;
   cursor: pointer;
-`;
+`
 
 export const Info = (props) => {
+  const current = useSelector((state) => state.currentCountry)
   const {
     name,
     nativeName,
@@ -100,33 +102,30 @@ export const Info = (props) => {
     languages = [],
     borders = [],
     push,
-  } = props;
-
+  } = props
+  console.log(current)
   return (
     <Wrapper>
-      <InfoImage src={flag} alt={name} />
-
+      <InfoImage src={current[0].flags.png} alt={current[0].name.common} />
       <div>
-        <InfoTitle>{name}</InfoTitle>
+        <InfoTitle>{current[0].name.common}</InfoTitle>
         <ListGroup>
           <List>
             <ListItem>
-              <b>Native Name:</b> {nativeName}
+              <b>Native Name:</b> {current[0].name.official}
             </ListItem>
             <ListItem>
-              <b>Population</b> {population}
+              <b>Population</b> {current[0].population}
             </ListItem>
             <ListItem>
-              <b>Region:</b> {region}
+              <b>Region:</b> {current[0].region}
             </ListItem>
+
             <ListItem>
-              <b>Sub Region:</b> {subregion}
-            </ListItem>
-            <ListItem>
-              <b>Capital:</b> {capital}
+              <b>Capital:</b> {current[0].capital[0]}
             </ListItem>
           </List>
-          <List>
+          {/* <List>
             <ListItem>
               <b>Top Level Domain</b>{' '}
               {topLevelDomain.map((d) => (
@@ -145,9 +144,9 @@ export const Info = (props) => {
                 <span key={l.name}>{l.name}</span>
               ))}
             </ListItem>
-          </List>
+          </List> */}
         </ListGroup>
-        <Meta>
+        {/* <Meta>
           <b>Border Countries</b>
           {!borders.length ? (
             <span>There is no border countries</span>
@@ -160,8 +159,8 @@ export const Info = (props) => {
               ))}
             </TagGroup>
           )}
-        </Meta>
+        </Meta> */}
       </div>
     </Wrapper>
-  );
-};
+  )
+}

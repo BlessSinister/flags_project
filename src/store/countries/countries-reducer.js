@@ -5,6 +5,7 @@ export const allCountriesReducer = (state = [], { type, payload }) => {
     case ADD_COUNTRIES: {
       return payload
     }
+
     default: {
       return state
     }
