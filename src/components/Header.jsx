@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { IoMoon, IoMoonOutline } from 'react-icons/io5'
 
 import { Container } from './Container'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTheme } from '../store/theme/theme-actions'
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -35,18 +37,26 @@ const ModeSwitcher = styled.div`
 `
 
 export const Header = () => {
-  const theme = 'dark'
-
+  const theme = useSelector((state) => state.theme)
+  const dispatch = useDispatch()
   useEffect(() => {
     document.body.setAttribute('data-theme', theme)
   }, [theme])
+
+  const hadleTheme = () => {
+    if (document.body.getAttribute('data-theme') === 'dark') {
+      dispatch(addTheme('light'))
+    } else {
+      dispatch(addTheme('dark'))
+    }
+  }
 
   return (
     <HeaderEl>
       <Container>
         <Wrapper>
           <Title>Where is the world?</Title>
-          <ModeSwitcher>
+          <ModeSwitcher onClick={hadleTheme}>
             {theme === 'light' ? (
               <IoMoonOutline size="14px" />
             ) : (
