@@ -1,6 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { IoSearch } from 'react-icons/io5';
+import { IoSearch } from 'react-icons/io5'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { searchCountry } from '../store/search-country/actino-search'
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -17,7 +20,7 @@ const InputContainer = styled.label`
     margin-bottom: 0;
     width: 280px;
   }
-`;
+`
 
 const Input = styled.input.attrs({
   type: 'search',
@@ -28,13 +31,20 @@ const Input = styled.input.attrs({
   outline: none;
   color: var(--color-text);
   background-color: var(--colors-ui-base);
-`;
+`
 
-export const Search = ({ search, setSearch }) => {
+export const Search = (/*{ search, setSearch }*/) => {
+  const [search, setSearch] = useState('')
+
+  const dispatch = useDispatch()
+  const state = useSelector((state) => state.allCountries)
+  useEffect(() => {
+    dispatch(searchCountry([state, search]))
+  }, [search])
   return (
     <InputContainer>
       <IoSearch />
-      <Input onChange={(e) => setSearch(e.target.value)} value={search}/>
+      <Input onChange={(e) => setSearch(e.target.value)} value={search} />
     </InputContainer>
-  );
-};
+  )
+}

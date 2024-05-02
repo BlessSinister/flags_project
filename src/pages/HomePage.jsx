@@ -9,25 +9,26 @@ import { addAllCountries } from '../store/countries/countries-actions'
 
 export const HomePage = () => {
   const navigate = useNavigate()
-
   const countries = useSelector((state) => state.allCountries)
+  const searchCountry = useSelector((state) => state.searchCountry)
   const dispatch = useDispatch()
   const allCon = async () => {
     let data = await fetch(ALL_COUNTRIES)
     data = await data.json()
-    console.log(data)
     dispatch(addAllCountries(data))
   }
   useEffect(() => {
     allCon()
   }, [])
 
+  const active = !searchCountry.length ? countries : searchCountry
+  console.log(active)
   return (
     <>
       <Controls />
 
       <List>
-        {countries.map((c) => {
+        {active.map((c) => {
           const countryInfo = {
             img: c.flags.png,
             name: c.name.common,

@@ -146,7 +146,7 @@ export const Info = (props) => {
             </ListItem>
           </List> */}
         </ListGroup>
-        {/* <Meta>
+        <Meta>
           <b>Border Countries</b>
           {!borders.length ? (
             <span>There is no border countries</span>
@@ -159,7 +159,7 @@ export const Info = (props) => {
               ))}
             </TagGroup>
           )}
-        </Meta> */}
+        </Meta>
       </div>
     </Wrapper>
   )
