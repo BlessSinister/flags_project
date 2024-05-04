@@ -1,27 +1,20 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/Controls'
-import { useDispatch, useSelector } from 'react-redux'
-import { ALL_COUNTRIES } from '../config'
-import { addAllCountries } from '../store/countries/countries-actions'
 
-export const HomePage = () => {
+export const HomePage = ({ countries, searchCountry, regionFilter }) => {
   const navigate = useNavigate()
-  const countries = useSelector((state) => state.allCountries)
-  const searchCountry = useSelector((state) => state.searchCountry)
-  const dispatch = useDispatch()
-  const allCon = async () => {
-    let data = await fetch(ALL_COUNTRIES)
-    data = await data.json()
-    dispatch(addAllCountries(data))
-  }
-  useEffect(() => {
-    allCon()
-  }, [])
 
-  const active = !searchCountry.length ? countries : searchCountry
+  let active = []
+  if (regionFilter.length) {
+    active = regionFilter
+  } else if (searchCountry.length) {
+    active = searchCountry
+  } else {
+    active = countries
+  }
+
   console.log(active)
   return (
     <>
