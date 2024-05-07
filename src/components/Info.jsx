@@ -93,7 +93,7 @@ export const Info = (props) => {
   console.log(current)
   return (
     <Wrapper>
-      <InfoImage src={current[0].flags.png} alt={current[0].name.common} />
+      <InfoImage src={current[0].flags.svg} alt={current[0].name.common} />
       <div>
         <InfoTitle>{current[0].name.common}</InfoTitle>
         <ListGroup>

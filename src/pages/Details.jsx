@@ -21,7 +21,6 @@ export const Details = () => {
     currentCountry = x
   }
 
-  console.log(x)
   return (
     <div>
       <Button onClick={() => navigate(-1)}>
