@@ -1,12 +1,14 @@
-import { CURRENT_COUNTRY } from './current-actions'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const currentCountryReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case CURRENT_COUNTRY: {
-      return payload[0].filter((item) => item.name.common === payload[1])
-    }
-    default: {
-      return state
-    }
-  }
-}
+export const currentCountrySlice = createSlice({
+  name: 'currentCountry',
+  initialState: [],
+  reducers: {
+    setCurrentCountry: (state, action) => {
+      return action.payload[0].filter(
+        (item) => item.name.common === action.payload[1]
+      )
+    },
+  },
+})
+export const { setCurrentCountry } = currentCountrySlice.actions

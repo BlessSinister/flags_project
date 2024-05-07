@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { Search } from './Search'
 import { CustomSelect } from './CustomSelect'
 import { useDispatch, useSelector } from 'react-redux'
-import { setRegionFilter } from '../store/region-filter/region-filter-actions'
+import { setRegion } from '../store/region-filter/region-filter-reducer'
 
 const optionsMap = {
   Africa: { value: 'Africa', label: 'Africa' },
-  America: { value: 'America', label: 'America' },
+  America: { value: 'Americas', label: 'America' },
   Asia: { value: 'Asia', label: 'Asia' },
   Europe: { value: 'Europe', label: 'Europe' },
   Oceania: { value: 'Oceania', label: 'Oceania' },
@@ -31,7 +31,7 @@ export const Controls = () => {
   const allCountries = useSelector((state) => state.allCountries)
   const dispatch = useDispatch()
   const handleChange = (reg) => {
-    dispatch(setRegionFilter([allCountries, reg?.value || '']))
+    dispatch(setRegion([allCountries, reg?.value || '']))
   }
   return (
     <Wrapper>

@@ -1,19 +1,17 @@
-import { createStore, compose, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import axios from 'axios'
-import * as api from '../config'
-import { rootReducer } from './root-reducer'
+import { configureStore } from '@reduxjs/toolkit'
+import { themeSlice } from './theme/theme-reducer'
+import { searchCountrySlice } from './search-country/reducer-search'
+import { setRegionSlice } from './region-filter/region-filter-reducer'
+import { currentCountrySlice } from './current_countries/current-reducer'
+import { allCountriesSlice } from './countries/countries-reducer'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-export const store = createStore(
-  rootReducer,
-  composeEnhancers(
-    applyMiddleware(
-      thunk.withExtraArgument({
-        client: axios,
-        api,
-      })
-    )
-  )
-)
+export const store = configureStore({
+  reducer: {
+    theme: themeSlice.reducer,
+    searchCountry: searchCountrySlice.reducer,
+    regionFilter: setRegionSlice.reducer,
+    currentCountry: currentCountrySlice.reducer,
+    allCountries: allCountriesSlice.reducer,
+  },
+  devTools: true,
+})

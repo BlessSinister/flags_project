@@ -7,9 +7,9 @@ import { HomePage } from './pages/HomePage'
 import { Details } from './pages/Details'
 import { NotFound } from './pages/NotFound'
 import { useEffect } from 'react'
-import { addAllCountries } from './store/countries/countries-actions'
 import { ALL_COUNTRIES } from './config'
 import { useDispatch, useSelector } from 'react-redux'
+import { allCountries } from './store/countries/countries-reducer'
 
 function App() {
   const countries = useSelector((state) => state.allCountries)
@@ -19,7 +19,7 @@ function App() {
   const allCon = async () => {
     let data = await fetch(ALL_COUNTRIES)
     data = await data.json()
-    dispatch(addAllCountries(data))
+    dispatch(allCountries(data))
   }
   useEffect(() => {
     allCon()

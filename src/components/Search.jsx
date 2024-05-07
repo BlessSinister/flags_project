@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-
 import { IoSearch } from 'react-icons/io5'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchCountry } from '../store/search-country/actino-search'
+import { setSearchCountry } from '../store/search-country/reducer-search'
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -33,13 +32,13 @@ const Input = styled.input.attrs({
   background-color: var(--colors-ui-base);
 `
 
-export const Search = (/*{ search, setSearch }*/) => {
+export const Search = () => {
   const [search, setSearch] = useState('')
 
   const dispatch = useDispatch()
   const state = useSelector((state) => state.allCountries)
   useEffect(() => {
-    dispatch(searchCountry([state, search]))
+    dispatch(setSearchCountry([state, search]))
   }, [search])
   return (
     <InputContainer>

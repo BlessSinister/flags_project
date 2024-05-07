@@ -5,7 +5,8 @@ import { IoMoon, IoMoonOutline } from 'react-icons/io5'
 
 import { Container } from './Container'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTheme } from '../store/theme/theme-actions'
+
+import { setTheme } from '../store/theme/theme-reducer'
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -46,9 +47,9 @@ export const Header = () => {
 
   const hadleTheme = () => {
     if (document.body.getAttribute('data-theme') === 'dark') {
-      dispatch(addTheme('light'))
+      dispatch(setTheme('light'))
     } else {
-      dispatch(addTheme('dark'))
+      dispatch(setTheme('dark'))
     }
   }
 

@@ -5,7 +5,7 @@ import { Button } from '../components/Button'
 import { Info } from '../components/Info'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCurrentCountry } from '../store/current_countries/current-actions'
+import { setCurrentCountry } from '../store/current_countries/current-reducer'
 
 export const Details = () => {
   const { name } = useParams()
@@ -13,7 +13,7 @@ export const Details = () => {
   const allCountries = useSelector((state) => state.allCountries)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(addCurrentCountry([allCountries, name]))
+    dispatch(setCurrentCountry([allCountries, name]))
   }, [])
   let x = useSelector((state) => state.currentCountry)
   let currentCountry = null

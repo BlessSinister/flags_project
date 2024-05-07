@@ -1,13 +1,13 @@
-import { ADD_COUNTRIES } from './countries-actions'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const allCountriesReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case ADD_COUNTRIES: {
-      return payload
-    }
-
-    default: {
-      return state
-    }
-  }
-}
+export const allCountriesSlice = createSlice({
+  name: 'allCountries',
+  initialState: [],
+  reducers: {
+    allCountries: (state, action) => {
+      console.log(action)
+      return action.payload
+    },
+  },
+})
+export const { allCountries } = allCountriesSlice.actions

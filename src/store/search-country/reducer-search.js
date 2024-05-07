@@ -1,13 +1,14 @@
-import { SEARCH_COUNTRY } from './actino-search'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const searchCountryReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case SEARCH_COUNTRY: {
-      console.log(payload)
-      return payload[0].filter((item) => item.name.common.includes(payload[1]))
-    }
-    default: {
-      return state
-    }
-  }
-}
+export const searchCountrySlice = createSlice({
+  name: 'searchCountry',
+  initialState: [],
+  reducers: {
+    setSearchCountry: (state, action) => {
+      return action.payload[0].filter((item) =>
+        item.name.common.includes(action.payload[1])
+      )
+    },
+  },
+})
+export const { setSearchCountry } = searchCountrySlice.actions

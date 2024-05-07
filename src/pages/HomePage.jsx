@@ -15,7 +15,6 @@ export const HomePage = ({ countries, searchCountry, regionFilter }) => {
     active = countries
   }
 
-  console.log(active)
   return (
     <>
       <Controls />

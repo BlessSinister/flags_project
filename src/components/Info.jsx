@@ -89,20 +89,7 @@ const Tag = styled.span`
 
 export const Info = (props) => {
   const current = useSelector((state) => state.currentCountry)
-  const {
-    name,
-    nativeName,
-    flag,
-    capital,
-    population,
-    region,
-    subregion,
-    topLevelDomain,
-    currencies = [],
-    languages = [],
-    borders = [],
-    push,
-  } = props
+  const { borders = [], push } = props
   console.log(current)
   return (
     <Wrapper>

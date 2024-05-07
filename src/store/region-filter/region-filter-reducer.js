@@ -1,13 +1,15 @@
-import { SET_REGION } from './region-filter-actions'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const setRegionReducer = (state = [], { type, payload }) => {
-  switch (type) {
-    case SET_REGION: {
-      console.log(payload)
-      return payload[0].filter((item) => item.region === payload[1])
-    }
-    default: {
-      return state
-    }
-  }
-}
+export const setRegionSlice = createSlice({
+  name: 'setRegion',
+  initialState: [],
+  reducers: {
+    setRegion: (state, action) => {
+      return action.payload[0].filter(
+        (item) => item.region === action.payload[1]
+      )
+    },
+  },
+})
+
+export const { setRegion } = setRegionSlice.actions
