@@ -3,6 +3,7 @@ import { IoSearch } from 'react-icons/io5'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchCountry } from '../store/search-country/reducer-search'
+import { serchSetRegion } from '../store/region-filter/region-filter-reducer'
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -37,7 +38,11 @@ export const Search = () => {
 
   const dispatch = useDispatch()
   const state = useSelector((state) => state.allCountries)
+  const regionFilter = useSelector((state) => state.regionFilter)
   useEffect(() => {
+    if (regionFilter.length) {
+      dispatch(serchSetRegion([regionFilter, search]))
+    }
     dispatch(setSearchCountry([state, search]))
   }, [search])
   return (

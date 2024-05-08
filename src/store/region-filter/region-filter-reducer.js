@@ -9,7 +9,11 @@ export const setRegionSlice = createSlice({
         (item) => item.region === action.payload[1]
       )
     },
+    serchSetRegion: (state, action) => {
+      console.log(action)
+      return action.payload[0].filter((item) => item === action.payload[1])
+    },
   },
 })
 
-export const { setRegion } = setRegionSlice.actions
+export const { setRegion, serchSetRegion } = setRegionSlice.actions
